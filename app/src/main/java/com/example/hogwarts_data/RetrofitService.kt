@@ -5,14 +5,20 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 interface RetrofitService {
 
     @GET("Houses")
-    suspend fun getAllMovies() : Response<ArrayList<HousesItem>>
+    suspend fun getAllHouse() : Response<ArrayList<HousesItem>>
+
+    @GET("Houses/{id}")
+    suspend fun getHouseId(
+        @Path("id") id: String
+    ) : Response<HousesItem>
 
     companion object {
-        var retrofitService: RetrofitService? = null
+        private var retrofitService: RetrofitService? = null
         fun getInstance() : RetrofitService {
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()

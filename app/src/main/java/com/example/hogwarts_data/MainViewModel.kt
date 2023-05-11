@@ -10,13 +10,14 @@ class MainViewModel constructor(private val mainRepository: MainRepository) : Vi
 
         val errorMessage = MutableLiveData<String>()
         val movieList = MutableLiveData<ArrayList<HousesItem>>()
+        val house = MutableLiveData<HousesItem>()
         var job: Job? = null
 
         val loading = MutableLiveData<Boolean>()
 
         fun getAllMovies() {
             job = CoroutineScope(Dispatchers.IO).launch {
-                val response = mainRepository.getAllMovies()
+                val response = mainRepository.getAllHouse()
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         movieList.postValue(response.body())
@@ -28,6 +29,21 @@ class MainViewModel constructor(private val mainRepository: MainRepository) : Vi
             }
 
         }
+    fun getHouse(id:String) {
+        job = CoroutineScope(Dispatchers.IO).launch {
+            val response = mainRepository.getHouseId(id)
+            withContext(Dispatchers.Main) {
+                if (response.isSuccessful) {
+                    house.postValue(response.body())
+                    loading.value = false
+                } else {
+                    onError("Error : ${response.message()} ")
+                }
+            }
+        }
+
+    }
+
 
         private fun onError(message: String) {
             errorMessage.value = message

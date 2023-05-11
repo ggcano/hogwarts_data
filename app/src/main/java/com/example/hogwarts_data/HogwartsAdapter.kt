@@ -10,7 +10,7 @@ import com.example.hogwarts_data.model.HousesItem
 class HogwartsAdapter : RecyclerView.Adapter<MainViewHolder>() {
 
         var movieList = mutableListOf<HousesItem>()
-
+        var onItemClick: ((positionString: String) -> Unit)? = null
         fun setMovies(movies: ArrayList<HousesItem>) {
             this.movieList = movies.toMutableList()
             notifyDataSetChanged()
@@ -33,7 +33,10 @@ class HogwartsAdapter : RecyclerView.Adapter<MainViewHolder>() {
             holder.binding.name.text = movie.name
             holder.binding.name.setBackgroundResource(randomColor)
 
-          //  Glide.with(holder.itemView.context).load(movie.imageUrl).into(holder.binding.imageview)
+            val id = movieList[position].id
+            holder.itemView.setOnClickListener {
+                onItemClick?.invoke(id.toString())
+            }
         }
 
         override fun getItemCount(): Int {
