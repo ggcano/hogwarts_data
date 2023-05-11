@@ -1,7 +1,8 @@
-package com.example.hogwarts_data
+package com.example.hogwarts_data.repo
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.hogwarts_data.viewmodel.MainViewModel
 
 class MyViewModelFactory constructor(private val repository: MainRepository): ViewModelProvider.Factory {
 

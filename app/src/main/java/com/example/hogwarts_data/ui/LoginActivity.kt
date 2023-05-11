@@ -1,4 +1,4 @@
-package com.example.hogwarts_data
+package com.example.hogwarts_data.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

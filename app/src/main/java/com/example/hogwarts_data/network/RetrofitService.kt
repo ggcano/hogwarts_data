@@ -1,4 +1,4 @@
-package com.example.hogwarts_data
+package com.example.hogwarts_data.network
 
 import com.example.hogwarts_data.model.HousesItem
 import retrofit2.Response

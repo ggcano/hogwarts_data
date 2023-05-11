@@ -1,4 +1,4 @@
-package com.example.hogwarts_data
+package com.example.hogwarts_data.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,11 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.hogwarts_data.adapter.HogwartsAdapter
+import com.example.hogwarts_data.repo.MainRepository
+import com.example.hogwarts_data.viewmodel.MainViewModel
+import com.example.hogwarts_data.repo.MyViewModelFactory
+import com.example.hogwarts_data.network.RetrofitService
 import com.example.hogwarts_data.databinding.ActivityMainBinding
 import com.example.hogwarts_data.helper.Constant
 import com.example.hogwarts_data.helper.PrefHelper
@@ -25,8 +30,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        //setSupportActionBar(binding.myToolbar)
-
         prefHelper = PrefHelper(this)
         setSupportActionBar(binding.myToolbar)
         setupToolbar()
@@ -40,9 +43,9 @@ class MainActivity : AppCompatActivity() {
             this, MyViewModelFactory(mainRepository)
         ).get(MainViewModel::class.java)
 
-
-        viewModel.movieList.observe(this) {
-            adapter.setMovies(it)
+        viewModel.getAllHouse()
+        viewModel.houseList.observe(this) {
+            adapter.setHouse(it)
         }
 
         viewModel.errorMessage.observe(this) {
@@ -87,14 +90,16 @@ class MainActivity : AppCompatActivity() {
             showMessage("Por Favor, inicia Sesion de nuevo")
             moveIntent()
         }
+
+       //
     }
 
-    private fun itemClick() {
+  /*  private fun itemClick() {
         adapter.onItemClick = {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
 
         }
-    }
+    }*/
 
     private fun goToDetailScreen(value: String) {
         val intent = Intent(this, DetailActivity::class.java)

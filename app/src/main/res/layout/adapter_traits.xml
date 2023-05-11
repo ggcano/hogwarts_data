@@ -1,0 +1,46 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="8dp"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name_traits"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#E1FF0D9F"
+            android:gravity="center_vertical"
+            android:paddingStart="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/id_traits"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <Switch
+            android:id="@+id/switch_id"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:checked="true"
+            android:text="Favoritos"
+            android:textColor="@color/white"
+        />
+
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
