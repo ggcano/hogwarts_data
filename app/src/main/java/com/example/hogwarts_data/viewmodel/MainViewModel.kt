@@ -2,6 +2,7 @@ package com.example.hogwarts_data.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.hogwarts_data.model.Head
 import com.example.hogwarts_data.model.HousesItem
 import com.example.hogwarts_data.model.Trait
 import com.example.hogwarts_data.repo.MainRepository
@@ -12,7 +13,7 @@ class MainViewModel constructor(private val mainRepository: MainRepository) : Vi
 
         val errorMessage = MutableLiveData<String>()
         val houseList = MutableLiveData<ArrayList<HousesItem>>()
-        val traitList = MutableLiveData<List<Trait>>()
+        val traitList = MutableLiveData<List<Head>>()
         val house = MutableLiveData<HousesItem>()
         var job: Job? = null
 

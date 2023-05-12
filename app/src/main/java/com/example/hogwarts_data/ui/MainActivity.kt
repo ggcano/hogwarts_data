@@ -80,8 +80,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.myToolbar.title = prefHelper.getString(Constant.PREF_USERNAME)
 
-
-        // Crea una instancia del botón y configúralo
         val button = Button(this)
         button.text = "Logout"
         binding.myToolbar.addView(button)
@@ -91,15 +89,8 @@ class MainActivity : AppCompatActivity() {
             moveIntent()
         }
 
-       //
     }
 
-  /*  private fun itemClick() {
-        adapter.onItemClick = {
-            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-
-        }
-    }*/
 
     private fun goToDetailScreen(value: String) {
         val intent = Intent(this, DetailActivity::class.java)

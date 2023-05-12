@@ -3,10 +3,7 @@ package com.example.hogwarts_data.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.viewbinding.library.activity.viewBinding
-import android.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.hogwarts_data.adapter.HogwartsAdapter
 import com.example.hogwarts_data.adapter.TraitsAdapter
 
 import com.example.hogwarts_data.repo.MainRepository
@@ -30,14 +27,11 @@ class DetailActivity : AppCompatActivity() {
             MyViewModelFactory(mainRepository)
         ).get(MainViewModel::class.java)
         val id = intent.getStringExtra("value_id")
-        binding.recyclerTraits.adapter = adapter
-        val layoutManager = LinearLayoutManager(this)
-        binding.recyclerTraits.layoutManager = layoutManager
 
         viewModel.getHouse(id.toString())
         observerHouse()
 
-        viewModel.traitList.observe(this) {
+       viewModel.traitList.observe(this) {
             adapter.setTraits(it)
         }
 
@@ -63,7 +57,8 @@ class DetailActivity : AppCompatActivity() {
             binding.textViewComnmonRoom.text = it.commonRoom
             binding.textViewElement.text = it.element
             binding.textViewHouseColours.text = it.houseColours
-
+            binding.textViewTraits.text = it.traits.toString()
+            binding.recyclerviewHead.adapter = adapter
         }
     }
 }

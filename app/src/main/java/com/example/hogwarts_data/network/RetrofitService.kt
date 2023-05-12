@@ -10,16 +10,16 @@ import retrofit2.http.Path
 interface RetrofitService {
 
     @GET("Houses")
-    suspend fun getAllHouse() : Response<ArrayList<HousesItem>>
+    suspend fun getAllHouse(): Response<ArrayList<HousesItem>>
 
     @GET("Houses/{id}")
     suspend fun getHouseId(
         @Path("id") id: String
-    ) : Response<HousesItem>
+    ): Response<HousesItem>
 
     companion object {
         private var retrofitService: RetrofitService? = null
-        fun getInstance() : RetrofitService {
+        fun getInstance(): RetrofitService {
             if (retrofitService == null) {
                 val retrofit = Retrofit.Builder()
                     .baseUrl("https://wizard-world-api.herokuapp.com/")
